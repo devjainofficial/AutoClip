@@ -1,0 +1,25 @@
+name: Renew WebSub Subscription
+
+on:
+  schedule:
+    - cron: '0 8 */9 * *'   # Every 9 days at 8am UTC
+  workflow_dispatch:          # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Renew WebSub subscription
+        run: python scripts/websub_renew.py
+        env:
+          YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+          WEBSUB_CALLBACK_URL: ${{ secrets.WEBSUB_CALLBACK_URL }}
