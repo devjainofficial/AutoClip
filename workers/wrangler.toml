@@ -1,8 +1,10 @@
 name = "autoclip-websub"
 main = "websub_worker.js"
 compatibility_date = "2024-01-01"
+workers_dev = true
+preview_urls = false
 
 # Secrets are set via `wrangler secret put` — never put values here:
-#   wrangler secret put WEBSUB_SECRET
-#   wrangler secret put VM_WEBHOOK_URL
-#   wrangler secret put VM_WEBHOOK_SECRET
+#   wrangler secret put WEBSUB_SECRET        (value: see .env VM_WEBHOOK_SECRET)
+#   wrangler secret put VM_WEBHOOK_URL       (update after Oracle VM is provisioned)
+#   wrangler secret put VM_WEBHOOK_SECRET    (value: see .env VM_WEBHOOK_SECRET)
